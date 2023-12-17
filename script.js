@@ -6,4 +6,8 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
         results.push(answer);
     }
     document.getElementById('result').textContent = 'Your answers: ' + results.join(', ');
+    var combinedResults = results.join(' ');
+    document.getElementById('displayResults').textContent = combinedResults;
+
+
 });
