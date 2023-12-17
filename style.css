@@ -14,6 +14,9 @@ header {
     color: white;
     padding: 10px 0;
     text-align: center;
+    background-image: url('../images/header-background.jpg'); /* Addition of background image */
+    background-size: cover;
+    background-position: center;
 }
 
 .quiz-section {
@@ -24,6 +27,19 @@ header {
 
 .question {
     margin-bottom: 20px;
+    text-align: left; /* Left-aligning the questions */
+}
+
+.question p {
+    margin-bottom: 5px; /* Add some space above the answer box */
+}
+
+.question input[type="text"] {
+    width: 100%; /* Full width of the container */
+    padding: 8px; /* Add some padding for aesthetics */
+    margin-bottom: 10px; /* Space after the input box */
+    border: 1px solid #ccc; /* Subtle border for the input box */
+    border-radius: 4px; /* Slightly rounded corners for the input box */
 }
 
 footer {
