@@ -1,29 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #d2deeb; /* Light Blue Background */
-}
-
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-}
-
-header {
-    background: #FFA500; /* Orange Background */
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    background-image: url('https://github.com/glenechocode/health-quiz/blob/main/images/header-background.jpg'); /* Addition of background image */
-    background-size: cover;
-    background-position: center;
-}
-
-.quiz-section {
-    background-color: #FFFACD; /* Light Yellow */
-    padding: 20px;
-    margin-top: 20px;
-}
+/* ... (previous CSS code) ... */
 
 .question {
     margin-bottom: 20px;
@@ -45,23 +20,4 @@ header {
     margin-right: auto;
 }
 
-footer {
-    background: #FFA500; /* Orange Background */
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
-}
-
-button {
-    background: #FFD700; /* Yellow */
-    color: black;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background: #FFA500; /* Darker Yellow/Orange */
-}
+/* ... (remaining CSS code) ... */
