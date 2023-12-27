@@ -15,40 +15,39 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
 
 //call to Lamda API 
 
-// Define the endpoint
-const apiUrl = 'https://e3u67sgt32.execute-api.us-east-1.amazonaws.com/default/AIF-staging';
+/const apiUrl = 'https://8m0dghi1fh.execute-api.us-east-1.amazonaws.com/default';
 
-// Function to call the API and send combinedResults with POST request
-async function callApiAndSendData(combinedResults) {
-  try {
-    // Use Fetch API to call the endpoint with a POST request
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ combinedResults }),
-    });
+// Data to be sent in the POST request
+const requestData = {
+  key1: 'value1',
+  key2: 'value2',
+};
 
+// Configuration for the Fetch API
+const requestOptions = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(requestData),
+};
+
+// Make the POST request to the API
+fetch(apiUrl, requestOptions)
+  .then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    // Parse the JSON response
-    const data = await response.json();
-
-    // Display the result on the screen
-    // Assuming there's a div with id="apiResult" in your HTML
-    document.getElementById('apiResult').innerText = JSON.stringify(data, null, 2);
-  } catch (error) {
-    // Handle errors, such as network issues
+    return response.json();
+  })
+  .then((data) => {
+    // Handle the response data here
+    console.log(data);
+  })
+  .catch((error) => {
+    // Handle errors, such as network issues or API errors
     console.error('There was a problem with the fetch operation:', error);
-  }
-}
-
-
-// Call the function to make the request and send combinedResults
-callApiAndSendData(combinedResults);
+  });
 
 
 //end call to Lamda API 
