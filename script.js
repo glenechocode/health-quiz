@@ -15,46 +15,33 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
 
 //call to Lamda API 
 
-const apiEndpoint = 'https://uxxhhoaae4.execute-api.us-east-1.amazonaws.com/default/OpenAI';
+// JavaScript to call the API and display results in the div
 
-// Define the data you want to send, if any, in JSON format
-// Ensure your API expects the data in this format or adjust as necessary
-const data = {
-    text: 'do re me' // Assuming 'do re me' is a value for a 'text' key
-};
-
-// Create an async function to make the API call
-async function callLambdaFunction() {
-    try {
-        // Make a POST request to the Lambda function
-        const response = await fetch(apiEndpoint, {
-            method: 'POST', // Use the method expected by your Lambda function
-            headers: {
-                'Content-Type': 'application/json',
-                // Include any additional headers your API requires
-            },
-            body: JSON.stringify(data), // Convert the JavaScript object to a JSON string
-        });
-
-        // Check if the response was ok (status in the range 200-299)
-        if (!response.ok) {
-            // Handle a non-successful HTTP status code
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        // Parse the JSON response
-        const responseData = await response.json();
-
-        // Handle the response data as needed
-        console.log(responseData);
-    } catch (error) {
-        // Handle any errors that occurred during the fetch
-        console.error('Error calling AWS Lambda function:', error);
-    }
+// assuming you have a function to fetch from the API
+async function fetchData() {
+  try {
+      const response = await fetch('https://uxxhhoaae4.execute-api.us-east-1.amazonaws.com/default/OpenAI', {
+          method: 'POST', // or 'GET' depending on your API
+          body: JSON.stringify({ data: 'wow' }),
+          headers: {
+              'Content-Type': 'application/json'
+              // Additional headers if required
+          }
+      });
+      const data = await response.json();
+      displayResults(data); // calling function to display the result
+  } catch (error) {
+      console.error('There was an error!', error);
+  }
 }
 
-// Call the function to execute the API call
-callLambdaFunction();
+function displayResults(apiResults) {
+  // Find the div with the id 'apiResults' and set its content
+  document.getElementById('apiResults').innerText = apiResults;
+}
+
+fetchData(); // call the function to fetch and display data
+
 
 
 //end call to Lamda API 
