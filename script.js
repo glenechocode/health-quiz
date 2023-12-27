@@ -13,5 +13,40 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
     var combinedResults = results.join(' ');
     document.getElementById('displayResults').textContent = prompt + combinedResults;
 
+//call to Lamda API 
+
+// Define the endpoint
+const apiUrl = 'https://c4knx4yayk.execute-api.us-east-1.amazonaws.com/default/AIF-staging';
+
+// Function to call the API and display the result
+async function callApiAndDisplayResult() {
+  try {
+    // Use Fetch API to call the endpoint
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    // Parse the JSON response
+    const data = await response.json();
+
+    // Display the result on the screen
+    // Assuming there's a div with id="apiResult" in your HTML
+    document.getElementById('apiResult').innerText = JSON.stringify(data, null, 2);
+  } catch (error) {
+    // Handle errors, such as network issues
+    console.error('There was a problem with the fetch operation:', error);
+  }
+}
+
+// Call the function to make the request and display the result
+callApiAndDisplayResult();
+
+
+
+//end call to Lamda API 
+
+
 
 });
+
+
