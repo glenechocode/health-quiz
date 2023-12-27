@@ -15,39 +15,40 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
 
 //call to Lamda API 
 
-const apiUrl = 'https://eo9q20s16l.execute-api.us-east-1.amazonaws.com/default/OpenAICall';
+  // Define the API endpoint
+const apiEndpoint = 'https://uxxhhoaae4.execute-api.us-east-1.amazonaws.com/default/OpenAI';
 
-// Data to be sent in the POST request
-const requestData = {
-  key1: 'value1',
-  key2: 'value2',
+// Define the data you want to send, if any, in JSON format
+const data = {
+    //... your data here
 };
 
-// Configuration for the Fetch API
-const requestOptions = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(requestData),
-};
+// Create an async function to make the API call
+async function callLambdaFunction() {
+    try {
+        // Make a POST request to the Lambda function
+        const response = await fetch(apiEndpoint, {
+            method: 'POST', // or 'GET' if the Lambda function is set up to retrieve via GET
+            headers: {
+                'Content-Type': 'application/json',
+                // Add any additional headers required by the API
+            },
+            body: JSON.stringify(data), // Convert the JavaScript object to a JSON string
+        });
 
-// Make the POST request to the API
-fetch(apiUrl, requestOptions)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+        // Parse the JSON response
+        const responseData = await response.json();
+
+        // Handle the response data as needed
+        console.log(responseData);
+    } catch (error) {
+        // Handle any errors that occurred during the fetch
+        console.error('Error calling AWS Lambda function:', error);
     }
-    return response.json();
-  })
-  .then((data) => {
-    // Handle the response data here
-    console.log(data);
-  })
-  .catch((error) => {
-    // Handle errors, such as network issues or API errors
-    console.error('There was a problem with the fetch operation:', error);
-  });
+}
+
+// Call the function to execute the API call
+callLambdaFunction();
 
 
 //end call to Lamda API 
