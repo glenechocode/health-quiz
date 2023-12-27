@@ -15,12 +15,12 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
 
 //call to Lamda API 
 
-  // Define the API endpoint
 const apiEndpoint = 'https://uxxhhoaae4.execute-api.us-east-1.amazonaws.com/default/OpenAI';
 
 // Define the data you want to send, if any, in JSON format
+// Ensure your API expects the data in this format or adjust as necessary
 const data = {
-    'do re me'
+    text: 'do re me' // Assuming 'do re me' is a value for a 'text' key
 };
 
 // Create an async function to make the API call
@@ -28,13 +28,19 @@ async function callLambdaFunction() {
     try {
         // Make a POST request to the Lambda function
         const response = await fetch(apiEndpoint, {
-            method: 'POST', // or 'GET' if the Lambda function is set up to retrieve via GET
+            method: 'POST', // Use the method expected by your Lambda function
             headers: {
                 'Content-Type': 'application/json',
-                // Add any additional headers required by the API
+                // Include any additional headers your API requires
             },
             body: JSON.stringify(data), // Convert the JavaScript object to a JSON string
         });
+
+        // Check if the response was ok (status in the range 200-299)
+        if (!response.ok) {
+            // Handle a non-successful HTTP status code
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         // Parse the JSON response
         const responseData = await response.json();
