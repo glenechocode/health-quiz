@@ -20,7 +20,7 @@ const apiEndpoint = 'https://uxxhhoaae4.execute-api.us-east-1.amazonaws.com/defa
 
 // Define the data you want to send, if any, in JSON format
 const data = {
-    //... your data here
+    'do re me'
 };
 
 // Create an async function to make the API call
