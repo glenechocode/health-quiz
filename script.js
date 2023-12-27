@@ -11,22 +11,29 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
     
 
     var combinedResults = results.join(' ');
-    document.getElementById('displayResults').textContent = prompt + combinedResults;
+//  document.getElementById('displayResults').textContent = prompt + combinedResults;
 
 //call to Lamda API 
 
 // Define the endpoint
 const apiUrl = 'https://e3u67sgt32.execute-api.us-east-1.amazonaws.com/default/AIF-staging';
 
-
-// Function to call the API and display the result
-async function callApiAndDisplayResult() {
+// Function to call the API and send combinedResults with POST request
+async function callApiAndSendData(combinedResults) {
   try {
-    // Use Fetch API to call the endpoint
-    const response = await fetch(apiUrl);
+    // Use Fetch API to call the endpoint with a POST request
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ combinedResults }),
+    });
+
     if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     // Parse the JSON response
     const data = await response.json();
 
@@ -39,9 +46,9 @@ async function callApiAndDisplayResult() {
   }
 }
 
-// Call the function to make the request and display the result
-callApiAndDisplayResult();
 
+// Call the function to make the request and send combinedResults
+callApiAndSendData(combinedResults);
 
 
 //end call to Lamda API 
