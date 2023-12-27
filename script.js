@@ -16,7 +16,8 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
 //call to Lamda API 
 
 // Define the endpoint
-const apiUrl = 'https://c4knx4yayk.execute-api.us-east-1.amazonaws.com/default/AIF-staging';
+const apiUrl = 'https://e3u67sgt32.execute-api.us-east-1.amazonaws.com/default/AIF-staging';
+
 
 // Function to call the API and display the result
 async function callApiAndDisplayResult() {
