@@ -15,7 +15,7 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
 
 //call to Lamda API 
 
-const apiUrl = 'https://boh5ady6mb.execute-api.us-east-1.amazonaws.com/default/OpenAICall';
+const apiUrl = 'https://eo9q20s16l.execute-api.us-east-1.amazonaws.com/default/OpenAICall';
 
 // Data to be sent in the POST request
 const requestData = {
