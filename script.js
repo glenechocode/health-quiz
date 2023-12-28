@@ -1,3 +1,4 @@
+
 document.getElementById('quiz-form').addEventListener('submit', function(event) {
   event.preventDefault();
   let results = [];
@@ -27,8 +28,21 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
     console.log("Data Received: ", data); // Log the data received
     if (Array.isArray(data) && data.length > 0) {
         const apiResponse = data[0]; // Access the first element of the array
-        const grade = apiResponse.grade; // Access the "grade" property
-        const summary = apiResponse.summary; // Access the "summary" property
+        const text = apiResponse.text; // Access the "text" property
+
+        // Split the "text" content by newlines to extract grade and summary
+        const lines = text.split('\n');
+        let grade = '';
+        let summary = '';
+
+        // Loop through the lines to find grade and summary
+        for (const line of lines) {
+            if (line.startsWith('Grade:')) {
+                grade = line.replace('Grade:', '').trim();
+            } else if (line.startsWith('Summary:')) {
+                summary = line.replace('Summary:', '').trim();
+            }
+        }
 
         // Display the grade and summary on the screen
         document.getElementById('apiReturn').textContent = `Grade: ${grade}\nSummary: ${summary}`;
@@ -36,6 +50,7 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
         console.error('Invalid response format:', data);
     }
 })
+
 
 
 
