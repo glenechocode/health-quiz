@@ -27,7 +27,7 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
   .then(data => {
       console.log("Data Received: ", data); // Log the data received
       const apiReturn = data.body; // Adjust depending on the format of your response
-      document.getElementById('displayResults').textContent = apiReturn;
+      document.getElementById('apiReturn').textContent = apiReturn;
   })
   .catch((error) => {
       console.error('Error:', error);
