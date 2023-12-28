@@ -1,4 +1,3 @@
-
 document.getElementById('quiz-form').addEventListener('submit', function(event) {
   event.preventDefault();
   let results = [];
@@ -23,32 +22,19 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
       console.log("Raw Response: ", response); // Log the raw response
       return response.json(); // Convert response to JSON
   })
-  
   .then(data => {
-    console.log("Data Received: ", data); // Log the data received
+      console.log("Data Received: ", data); // Log the data received
 
-    if (data && data.choices && data.choices.length > 0) {
-        const choice = data.choices[0]; // Access the first choice in the array
-        const text = choice.text; // Access the "text" property of the choice
+      if (data && data.choices && data.choices.length > 0) {
+          const choice = data.choices[0]; // Access the first choice in the array
+          const text = choice.text; // Access the "text" property of the choice
 
-        // Display the grade and summary on the screen
-        document.getElementById('apiReturn').textContent = text;
-    } else {
-        console.error('Invalid response format:', data);
-    }
-})
-
-
-        // Display the grade and summary on the screen
-        document.getElementById('apiReturn').textContent = `Grade: ${grade}\nSummary: ${summary}`;
-    } else {
-        console.error('Invalid response format:', data);
-    }
-})
-
-
-
-
+          // Display the grade and summary on the screen
+          document.getElementById('apiReturn').textContent = text;
+      } else {
+          console.error('Invalid response format:', data);
+      }
+  })
   .catch((error) => {
       console.error('Error:', error);
   });
