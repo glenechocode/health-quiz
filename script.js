@@ -1,5 +1,10 @@
 document.getElementById('quiz-form').addEventListener('submit', function(event) {
   event.preventDefault();
+
+// Display "Grading results..." as user feedback
+document.getElementById('feedback').textContent = 'Grading results...';
+
+
   let results = [];
   for (let i = 1; i <= 5; i++) {
       let answer = document.getElementById('q' + i).value;
