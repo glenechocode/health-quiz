@@ -10,6 +10,8 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
   var combinedResults = results.join(' ');
 
   // Call to Lambda API
+  console.log("Event: ", event);
+
   fetch('https://ydh2l6r29j.execute-api.us-east-1.amazonaws.com/default/OpenAI', {
       method: 'POST', // or 'PUT' if your API supports it
       headers: {
@@ -26,6 +28,9 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
   .catch((error) => {
       console.error('Error:', error);
   });
+
+  console.log("Response: ", response);
+
 
   //end call to Lambda API 
 });
