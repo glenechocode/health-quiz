@@ -26,23 +26,18 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
   
   .then(data => {
     console.log("Data Received: ", data); // Log the data received
-    if (Array.isArray(data) && data.length > 0) {
-        const apiResponse = data[0]; // Access the first element of the array
-        const text = apiResponse.text; // Access the "text" property
 
-        // Split the "text" content by newlines to extract grade and summary
-        const lines = text.split('\n');
-        let grade = '';
-        let summary = '';
+    if (data && data.choices && data.choices.length > 0) {
+        const choice = data.choices[0]; // Access the first choice in the array
+        const text = choice.text; // Access the "text" property of the choice
 
-        // Loop through the lines to find grade and summary
-        for (const line of lines) {
-            if (line.startsWith('Grade:')) {
-                grade = line.replace('Grade:', '').trim();
-            } else if (line.startsWith('Summary:')) {
-                summary = line.replace('Summary:', '').trim();
-            }
-        }
+        // Display the grade and summary on the screen
+        document.getElementById('apiReturn').textContent = text;
+    } else {
+        console.error('Invalid response format:', data);
+    }
+})
+
 
         // Display the grade and summary on the screen
         document.getElementById('apiReturn').textContent = `Grade: ${grade}\nSummary: ${summary}`;
