@@ -25,11 +25,17 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
   
   .then(data => {
     console.log("Data Received: ", data); // Log the data received
-    const apiReturn = data[0]; // Access the first element of the array
-    document.getElementById('apiReturn').textContent = apiReturn;
+    if (Array.isArray(data) && data.length > 0) {
+        const apiResponse = data[0]; // Access the first element of the array
+        const grade = apiResponse.grade; // Access the "grade" property
+        const summary = apiResponse.summary; // Access the "summary" property
+
+        // Display the grade and summary on the screen
+        document.getElementById('apiReturn').textContent = `Grade: ${grade}\nSummary: ${summary}`;
+    } else {
+        console.error('Invalid response format:', data);
+    }
 })
-
-
 
 
 
