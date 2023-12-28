@@ -18,8 +18,7 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
           // Include any other headers your API requires
       },
       body: JSON.stringify({ prompt: prompt + combinedResults }),
-      console.log("Sending Results: ", combinedResults); // Log the results being sent
-
+      
   })
   .then(response => {
       console.log("Raw Response: ", response); // Log the raw response
