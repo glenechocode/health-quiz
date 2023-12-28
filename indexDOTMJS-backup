@@ -1,0 +1,46 @@
+export async function handler(event) {
+    // Check for preflight request
+    if (event.httpMethod === 'OPTIONS') {
+        // Preflight request must return only headers necessary for CORS
+        return {
+            statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*", // Adjust with your domain in production
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+            },
+            body: JSON.stringify({}),
+        };
+    }
+    
+    // Handle the main request (POST in this case)
+    let incoming;
+    try {
+        incoming = JSON.parse(event.body);
+    } catch (e) {
+        return {
+            statusCode: 400,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+            },
+            body: JSON.stringify({ message: "Invalid JSON input" }),
+        };
+    }
+
+    const responseData = {
+        message: "Received: " + incoming.prompt
+    };
+
+    const response = {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        },
+        body: JSON.stringify(responseData),
+    };
+    return response;
+};

@@ -22,11 +22,17 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
       console.log("Raw Response: ", response); // Log the raw response
       return response.json(); // Convert response to JSON
   })
+  
   .then(data => {
-      console.log("Data Received: ", data); // Log the data received
-      const apiReturn = data.message; // Access the message property of the response
-      document.getElementById('apiReturn').textContent = apiReturn;
-  })
+    console.log("Data Received: ", data); // Log the data received
+    const apiReturn = data[0]; // Access the first element of the array
+    document.getElementById('apiReturn').textContent = apiReturn;
+})
+
+
+
+
+
   .catch((error) => {
       console.error('Error:', error);
   });
