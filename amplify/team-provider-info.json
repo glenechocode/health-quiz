@@ -1,0 +1,27 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-healthquiz-staging-142801-authRole",
+      "UnauthRoleArn": "arn:aws:iam::965210108272:role/amplify-healthquiz-staging-142801-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::965210108272:role/amplify-healthquiz-staging-142801-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-healthquiz-staging-142801-deployment",
+      "UnauthRoleName": "amplify-healthquiz-staging-142801-unauthRole",
+      "StackName": "amplify-healthquiz-staging-142801",
+      "StackId": "arn:aws:cloudformation:us-east-1:965210108272:stack/amplify-healthquiz-staging-142801/7c0174c0-9ce8-11ee-8c3c-0ec423022597",
+      "AmplifyAppId": "di4pwadstx69q",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-healthquiz-staging-142801-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "auth": {
+        "healthquiz": {}
+      },
+      "function": {
+        "AIF": {
+          "deploymentBucketName": "amplify-healthquiz-staging-142801-deployment",
+          "s3Key": "amplify-builds/AIF-6c6268474e7854655076-build.zip"
+        }
+      }
+    }
+  }
+}
