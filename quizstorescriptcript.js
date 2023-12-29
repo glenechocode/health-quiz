@@ -21,6 +21,10 @@ console.log ("point A");
   }
 `;
 
+console.log ("point b", QuizName);
+
+
+
 // Function to fetch quizzes and populate dropdown
 async function fetchQuizzes() {
   try {
