@@ -7,6 +7,9 @@ Amplify.configure(config);
 
 // GraphQL query to list quizzes
 const listQuizzes = /* GraphQL */ `
+
+console.log ("point A");
+
   query ListQuizData {
     listQuizData {
       items {
