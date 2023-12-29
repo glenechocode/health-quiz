@@ -48,40 +48,71 @@ document.getElementById('feedback').textContent = 'Grading results...';
 
 //Database code
 
-import Amplify from 'aws-amplify';
-import awsExports from './aws-exports'; // your generated aws-exports file
-
-Amplify.configure(awsExports);
-
-query ListQuizzes {
-    listQuizDatas {
-      items {
-        id
-        QuizName
+document.addEventListener('DOMContentLoaded', function() {
+    // Define the GraphQL query
+    const listQuizzesQuery = /* GraphQL */ `
+      query ListQuizData {
+        listQuizData {
+          items {
+            id
+            QuizName
+            Question
+          }
+        }
+      }
+    `;
+  
+    // Function to fetch quizzes and populate the dropdown
+    async function fetchQuizzes() {
+      try {
+        const quizData = await API.graphql(graphqlOperation(listQuizzesQuery));
+        const quizzes = quizData.data.listQuizData.items;
+        populateDropdown(quizzes);
+      } catch (err) {
+        console.error("Error fetching quizzes:", err);
       }
     }
-  }
-
-  import { API, graphqlOperation } from 'aws-amplify';
-import { listQuizDatas } from './graphql/queries'; // auto-generated queries file
-
-async function fetchQuizzes() {
-  try {
-    const quizData = await API.graphql(graphqlOperation(listQuizzes));
-    const quizzes = quizData.data.listQuizDatas.items;
-    populateDropdown(quizzes);
-  } catch (err) {
-    console.error('Error fetching quizzes:', err);
-  }
-}
-
-function populateDropdown(quizzes) {
-  const select = document.getElementById('quizSelector');
-  quizzes.forEach(quiz => {
-    let option = new Option(quiz.QuizName, quiz.id);
-    select.appendChild(option);
+  
+    // Call fetchQuizzes when the page loads
+    fetchQuizzes();
+  
+    // Function to populate the dropdown
+    function populateDropdown(quizzes) {
+      const dropdown = document.getElementById('quizSelector');
+      quizzes.forEach(quiz => {
+        const option = document.createElement('option');
+        option.value = quiz.id; // using the quiz ID as the value
+        option.textContent = quiz.QuizName;
+        dropdown.appendChild(option);
+      });
+    }
+  
+    // Function to display questions for the selected quiz
+    function displayQuestions(quizId, quizzes) {
+      const selectedQuiz = quizzes.find(quiz => quiz.id === quizId);
+      const questionsContainer = document.getElementById('questionsContainer');
+      questionsContainer.innerHTML = ''; // Clear previous questions
+  
+      if (selectedQuiz) {
+        selectedQuiz.Question.split(',').forEach(questionText => {
+          const questionElement = document.createElement('p');
+          questionElement.textContent = questionText;
+          questionsContainer.appendChild(questionElement);
+        });
+      }
+    }
+  
+    // Event listener for the dropdown change
+    document.getElementById('quizSelector').addEventListener('change', function(event) {
+      const selectedQuizId = event.target.value;
+      const quizzes = Array.from(event.target.options).map(option => ({
+        id: option.value,
+        QuizName: option.text,
+        // Assuming the question data is embedded in the option element,
+        // otherwise, you may need to fetch or store the quiz data differently
+        Question: option.getAttribute('data-questions')
+      }));
+      displayQuestions(selectedQuizId, quizzes);
+    });
   });
-}
-
-// Call fetchQuizzes on window load or component mount
-window.onload = fetchQuizzes;
+  

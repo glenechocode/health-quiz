@@ -21,6 +21,10 @@
           "deploymentBucketName": "amplify-healthquiz-staging-142801-deployment",
           "s3Key": "amplify-builds/AIF-6c6268474e7854655076-build.zip"
         }
+      },
+      "api": {
+        "AIFAPI": {},
+        "healthquiz": {}
       }
     }
   }
