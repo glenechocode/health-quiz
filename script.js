@@ -57,12 +57,17 @@ Amplify.configure(config);
 import { API, graphqlOperation } from 'aws-amplify';
 
 
+console.log("point A");
 
 async function fetchQuizzes() {
     try {
       const quizData = await API.graphql(graphqlOperation(listQuizData));
       const quizzes = quizData.data.listQuizData.items;
       populateQuizDropdown(quizzes);
+
+      console.log("point A2");
+
+
     } catch (err) {
       console.error("Error fetching quizzes:", err);
     }
@@ -70,6 +75,10 @@ async function fetchQuizzes() {
   
   function populateQuizDropdown(quizzes) {
     const selector = document.getElementById('quizSelector');
+
+    console.log("point B");
+
+
     quizzes.forEach(quiz => {
       const option = document.createElement('option');
       option.value = quiz.id;
