@@ -1,6 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #d2deeb; /* Light Blue Background */
+    color: #333; /* Dark text for readability */
+    line-height: 1.6;
 }
 
 .container {
@@ -12,35 +14,36 @@ body {
 header {
     background: #FFA500; /* Orange Background */
     color: white;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
-    background-size: cover;
-    background-position: center;
 }
 
 .quiz-section {
     background-color: #FFFACD; /* Light Yellow */
     padding: 20px;
+    border-radius: 8px; /* Rounded corners for quiz section */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     margin-top: 20px;
 }
 
 .question {
     margin-bottom: 20px;
-    text-align: left; /* Left-aligning the questions and answer boxes */
+    text-align: left;
 }
 
-.question p {
-    margin-bottom: 5px; /* Add some space above the answer box */
+.question label {
+    display: block; /* Ensures label takes its own line */
+    margin-bottom: .5em; /* Spacing between question and input */
+    font-weight: bold; /* Makes question labels stand out */
 }
 
 .question input[type="text"] {
-    width: 70%; /* Set width to 70% */
-    padding: 8px; /* Add some padding for aesthetics */
-    margin-bottom: 10px; /* Space after the input box */
-    border: 1px solid #ccc; /* Subtle border for the input box */
-    border-radius: 4px; /* Slightly rounded corners for the input box */
-    display: block; /* Ensures the input takes its own line */
-    margin-left: 0; /* Align left */
+    width: 100%; /* Full width of parent container */
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
 }
 
 footer {
@@ -48,18 +51,22 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    margin-top: 20px;
+    position: relative; /* Ensures footer is at the bottom */
+    bottom: 0;
+    width: 100%;
 }
 
 button {
-    background: #FFD700; /* Yellow */
+    background: #FFD700; /* Golden */
     color: black;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px; /* Slightly larger font for buttons */
+    border-radius: 5px; /* Rounded corners for buttons */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 button:hover {
-    background: #FFA500; /* Darker Yellow/Orange */
+    background: #FFA500; /* Darker Yellow/Orange for hover effect */
 }
