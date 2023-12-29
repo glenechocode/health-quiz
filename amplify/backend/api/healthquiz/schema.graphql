@@ -1,6 +1,6 @@
 type QuizData @model @auth(rules: [{allow: public}]) {
   id: ID!
-  QuizName: String
-  QuestionNumber: [Int!]
-  Question: String
+  QuizName: String!
+  Question: [String]
 }
+ 
