@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "aws-amplify": "^6.0.9",
     "node-fetch": "^3.3.2",
     "openai": "^4.24.1"
   },
