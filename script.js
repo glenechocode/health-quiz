@@ -48,71 +48,36 @@ document.getElementById('feedback').textContent = 'Grading results...';
 
 //Database code
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Define the GraphQL query
-    const listQuizzesQuery = /* GraphQL */ `
-      query ListQuizData {
-        listQuizData {
-          items {
-            id
-            QuizName
-            Question
-          }
-        }
-      }
-    `;
-  
-    // Function to fetch quizzes and populate the dropdown
-    async function fetchQuizzes() {
-      try {
-        const quizData = await API.graphql(graphqlOperation(listQuizzesQuery));
-        const quizzes = quizData.data.listQuizData.items;
-        populateDropdown(quizzes);
-      } catch (err) {
-        console.error("Error fetching quizzes:", err);
-      }
+// Ensure this comes after the Amplify configuration
+
+import Amplify from 'aws-amplify';
+import config from './aws-exports'; // The path to the aws-exports file may vary depending on your project structure
+
+Amplify.configure(config);
+import { API, graphqlOperation } from 'aws-amplify';
+
+
+
+async function fetchQuizzes() {
+    try {
+      const quizData = await API.graphql(graphqlOperation(listQuizData));
+      const quizzes = quizData.data.listQuizData.items;
+      populateQuizDropdown(quizzes);
+    } catch (err) {
+      console.error("Error fetching quizzes:", err);
     }
+  }
   
-    // Call fetchQuizzes when the page loads
-    fetchQuizzes();
-  
-    // Function to populate the dropdown
-    function populateDropdown(quizzes) {
-      const dropdown = document.getElementById('quizSelector');
-      quizzes.forEach(quiz => {
-        const option = document.createElement('option');
-        option.value = quiz.id; // using the quiz ID as the value
-        option.textContent = quiz.QuizName;
-        dropdown.appendChild(option);
-      });
-    }
-  
-    // Function to display questions for the selected quiz
-    function displayQuestions(quizId, quizzes) {
-      const selectedQuiz = quizzes.find(quiz => quiz.id === quizId);
-      const questionsContainer = document.getElementById('questionsContainer');
-      questionsContainer.innerHTML = ''; // Clear previous questions
-  
-      if (selectedQuiz) {
-        selectedQuiz.Question.split(',').forEach(questionText => {
-          const questionElement = document.createElement('p');
-          questionElement.textContent = questionText;
-          questionsContainer.appendChild(questionElement);
-        });
-      }
-    }
-  
-    // Event listener for the dropdown change
-    document.getElementById('quizSelector').addEventListener('change', function(event) {
-      const selectedQuizId = event.target.value;
-      const quizzes = Array.from(event.target.options).map(option => ({
-        id: option.value,
-        QuizName: option.text,
-        // Assuming the question data is embedded in the option element,
-        // otherwise, you may need to fetch or store the quiz data differently
-        Question: option.getAttribute('data-questions')
-      }));
-      displayQuestions(selectedQuizId, quizzes);
+  function populateQuizDropdown(quizzes) {
+    const selector = document.getElementById('quizSelector');
+    quizzes.forEach(quiz => {
+      const option = document.createElement('option');
+      option.value = quiz.id;
+      option.textContent = quiz.QuizName;
+      selector.appendChild(option);
     });
-  });
+  }
+  
+  // Call fetchQuizzes to load data into the dropdown when the page loads
+  fetchQuizzes();
   

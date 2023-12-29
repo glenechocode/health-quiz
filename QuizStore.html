@@ -10,18 +10,17 @@
     
     <div id="store-container">
         <h1>Quiz Store</h1>
-        <!-- Content for Quiz Store -->
-        <p>Welcome to the Quiz Store! This is where you can create and edit quizes.</p>
-        
-        <!-- Link back to Health Quiz page -->
+        <p>Welcome to the Quiz Store! This is where you can create and edit quizzes.</p>
+        <select id="quizSelector">
+            <option value="">Select a Quiz</option>
+            <!-- Options will be dynamically loaded here -->
+        </select>
         <a href="index.html">Back to Health Quiz</a>
     </div>
 
-    <select id="quizSelector">
-        <option value="">Select a Quiz</option>
-        <!-- Options will be dynamically loaded here -->
-    </select>
-    
+    <!-- Include the JavaScript file -->
+    <script type="module" src="script.js"></script>
+
 
 </body>
 </html>
