@@ -1,10 +1,8 @@
-import { Amplify } from 'aws-amplify';
-import config from './aws-exports.js';
-import { API, graphqlOperation } from 'aws-amplify';
-
+// Initialize AWS Amplify and configure it with your config
 Amplify.configure(config);
 
-document.addEventListener('DOMContentLoaded', async () => {
+// Wait for the DOM to load
+document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM content loaded'); // Debugging line
 
     // GraphQL query to list quiz data
