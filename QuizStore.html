@@ -18,10 +18,8 @@
         <a href="index.html">Back to Health Quiz</a>
     </div>
 
-    <!-- Include AWS Amplify & Config from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-amplify/4.3.2/dist/aws-amplify.min.js"></script>
-
-    <!-- Include your script after AWS Amplify -->
-    <script src="quizstorescript.js"></script>
+    <!-- Include AWS Amplify & Config from CDN and then your script as a module -->
+    <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.2/dist/aws-amplify.min.js" type="module"></script>
+    <script src="quizstorescript.js" type="module"></script>
 </body>
 </html>
