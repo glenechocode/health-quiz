@@ -1,5 +1,6 @@
 {
   "AppSyncApiName": "healthquiz",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2023-12-30T18:53:37.858Z"
 }
